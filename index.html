@@ -148,7 +148,43 @@
         }
 
     </script>
+<script>
+let tempoPreto = 10;
 
+function iniciarTelaPreta() {
+
+    const tela = document.getElementById("telaPreta");
+    const contador = document.getElementById("contadorPreto");
+
+    tela.classList.add("ativa");
+
+    tempoPreto = 10;
+    contador.textContent = tempoPreto;
+
+    const intervalo = setInterval(function () {
+
+        tempoPreto--;
+
+        contador.textContent = tempoPreto;
+
+        if (tempoPreto <= 0) {
+
+            clearInterval(intervalo);
+
+            tela.classList.remove("ativa");
+
+        }
+
+    }, 1000);
+}
+
+/* A página fica normal por 15 segundos
+   antes do primeiro apagão */
+
+setTimeout(function () {
+    iniciarTelaPreta();
+}, 15000);
+</script>
 </body>
     <!-- ANIMAIS VOADORES -->
 <div class="animais-voadores">
