@@ -12,6 +12,34 @@
 
 <body>
 
+    <!-- ANIMAIS VOADORES -->
+    <div class="animais-voadores">
+        <span>🐄</span>
+        <span>🐈</span>
+        <span>🐔</span>
+        <span>🐖</span>
+        <span>🦆</span>
+        <span>🐑</span>
+        <span>🐕</span>
+        <span>🦖</span>
+        <span>🐘</span>
+        <span>🐓</span>
+    </div>
+
+    <!-- TELA PRETA DO CAOS -->
+    <div id="telaPreta">
+        <div class="mensagem-preta">
+            <h1>OPS...</h1>
+            <p>O sistema decidiu desaparecer.</p>
+            <p>
+                Voltando em
+                <span id="contadorPreto">10</span>
+                segundos...
+            </p>
+        </div>
+    </div>
+
+
     <div class="container">
 
         <div class="aviso">
@@ -91,7 +119,7 @@
         </form>
 
         <p class="rodape">
-            🔒 Seus dados estão 100% seguros*  
+            🔒 Seus dados estão 100% seguros*
             <br>
             *Não sabemos.
         </p>
@@ -147,66 +175,58 @@
 
         }
 
-    </script>
-<script>
-let tempoPreto = 10;
 
-function iniciarTelaPreta() {
+        /* =====================================
+           TELA PRETA
+           ===================================== */
 
-    const tela = document.getElementById("telaPreta");
-    const contador = document.getElementById("contadorPreto");
+        let tempoPreto = 10;
 
-    tela.classList.add("ativa");
+        function iniciarTelaPreta() {
 
-    tempoPreto = 10;
-    contador.textContent = tempoPreto;
+            const tela =
+                document.getElementById("telaPreta");
 
-    const intervalo = setInterval(function () {
+            const contador =
+                document.getElementById("contadorPreto");
 
-        tempoPreto--;
+            tela.classList.add("ativa");
 
-        contador.textContent = tempoPreto;
+            tempoPreto = 10;
 
-        if (tempoPreto <= 0) {
+            contador.textContent = tempoPreto;
 
-            clearInterval(intervalo);
 
-            tela.classList.remove("ativa");
+            const intervalo = setInterval(function () {
 
+                tempoPreto--;
+
+                contador.textContent = tempoPreto;
+
+
+                if (tempoPreto <= 0) {
+
+                    clearInterval(intervalo);
+
+                    tela.classList.remove("ativa");
+
+                }
+
+            }, 1000);
         }
 
-    }, 1000);
-}
 
-/* A página fica normal por 15 segundos
-   antes do primeiro apagão */
+        /* Depois de 15 segundos,
+           o site simplesmente desaparece */
 
-setTimeout(function () {
-    iniciarTelaPreta();
-}, 15000);
-</script>
+        setTimeout(function () {
+
+            iniciarTelaPreta();
+
+        }, 15000);
+
+    </script>
+
 </body>
-    <!-- ANIMAIS VOADORES -->
-<div class="animais-voadores">
-    <span>🐄</span>
-    <span>🐈</span>
-    <span>🐔</span>
-    <span>🐖</span>
-    <span>🦆</span>
-    <span>🐑</span>
-    <span>🐕</span>
-    <span>🦖</span>
-    <span>🐘</span>
-    <span>🐓</span>
-</div>
-
-<!-- TELA PRETA DO CAOS -->
-<div id="telaPreta">
-    <div class="mensagem-preta">
-        <h1>OPS...</h1>
-        <p>O sistema decidiu desaparecer.</p>
-        <p>Voltando em <span id="contadorPreto">10</span> segundos...</p>
-    </div>
-</div>
 
 </html>
