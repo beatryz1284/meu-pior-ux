@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Senha Definitivamente Segura</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="aviso">
+            🔐 ÁREA EXTREMAMENTE SEGURA 🔐
+        </div>
+
+        <h1>🔑 SUA SENHA</h1>
+
+        <p>
+            Crie uma senha fácil de lembrar,
+            difícil de esquecer e impossível de entender.
+        </p>
+
+        <h2>
+            ⏱️ TEMPO:
+            <span id="tempoSenha">25</span>
+        </h2>
+
+        <label for="senha">
+            Senha obrigatória*:
+        </label>
+
+        <input
+            type="password"
+            id="senha"
+            placeholder="Digite uma senha..."
+            oninput="verificarForca()"
+        >
+
+        <button
+            type="button"
+            onclick="mostrarSenha()">
+            👁️ MOSTRAR
+        </button>
+
+        <div class="forca">
+
+            <p>
+                Força da senha:
+                <strong id="forca">DESCONHECIDA</strong>
+            </p>
+
+            <div class="barra-fundo">
+
+                <div id="barraSenha"></div>
+
+            </div>
+
+        </div>
+
+
+        <label for="confirmarSenha">
+            Confirme a senha que você acabou de esquecer:
+        </label>
+
+        <input
+            type="password"
+            id="confirmarSenha"
+            placeholder="Digite novamente..."
+        >
+
+
+        <div class="regras">
+
+            <h3>📜 REGRAS IMPORTANTÍSSIMAS</h3>
+
+            <ul>
+
+                <li>Deve ter pelo menos 8 caracteres.</li>
+
+                <li>Deve ter exatamente 10 caracteres.</li>
+
+                <li>Precisa ter números.</li>
+
+                <li>Não pode ter números.</li>
+
+                <li>Precisa ter letras.</li>
+
+                <li>Não pode repetir a mesma letra.</li>
+
+                <li>Não pode ser muito fácil.</li>
+
+                <li>Também não pode ser muito difícil.</li>
+
+            </ul>
+
+        </div>
+
+
+        <button onclick="voltar()">
+            ← ESQUECI
+        </button>
+
+        <button
+            id="finalizar"
+            onclick="finalizar()">
+            FINALIZAR???
+        </button>
+
+        <p id="mensagem"></p>
+
+    </div>
+
+
+    <script>
+
+        let tempo = 25;
+
+
+        /* =========================
+           CONTADOR
+           ========================= */
+
+        const contador = setInterval(function () {
+
+            tempo--;
+
+            document.getElementById("tempoSenha")
+                .textContent = tempo;
+
+
+            if (tempo === 15) {
+
+                document.getElementById("mensagem")
+                    .textContent =
+                    "⚠️ Você está demorando.";
+
+            }
+
+
+            if (tempo === 8) {
+
+                document.getElementById("mensagem")
+                    .textContent =
+                    "🚨 SENHA QUASE EXPIRANDO!!!";
+
+            }
+
+
+            if (tempo <= 0) {
+
+                clearInterval(contador);
+
+                document.getElementById("tempoSenha")
+                    .textContent = "0";
+
+                document.getElementById("mensagem")
+                    .textContent =
+                    "💀 TEMPO ESGOTADO. Mas você ainda pode tentar.";
+
+            }
+
+        }, 1000);
+
+
+        /* =========================
+           FORÇA ALEATÓRIA
+           ========================= */
+
+        function verificarForca() {
+
+            const senha =
+                document.getElementById("senha").value;
+
+            const forca =
+                document.getElementById("forca");
+
+            const barra =
+                document.getElementById("barraSenha");
+
+
+            if (senha.length === 0) {
+
+                forca.textContent = "DESCONHECIDA";
+
+                barra.style.width = "5%";
+
+                return;
+
+            }
+
+
+            const numero =
+                Math.floor(Math.random() * 4);
+
+
+            if (numero === 0) {
+
+                forca.textContent = "FRACA";
+
+                barra.style.width = "20%";
+
+            }
+
+            else if (numero === 1) {
+
+                forca.textContent = "MÉDIA";
+
+                barra.style.width = "50%";
+
+            }
+
+            else if (numero === 2) {
+
+                forca.textContent = "FORTE";
+
+                barra.style.width = "80%";
+
+            }
+
+            else {
+
+                forca.textContent = "ABSURDAMENTE FORTE";
+
+                barra.style.width = "100%";
+
+            }
+
+        }
+
+
+        /* =========================
+           MOSTRAR SENHA
+           ========================= */
+
+        function mostrarSenha() {
+
+            const campo =
+                document.getElementById("senha");
+
+
+            if (campo.type === "password") {
+
+                campo.type = "text";
+
+            } else {
+
+                campo.type = "password";
+
+            }
+
+        }
+
+
+        /* =========================
+           FINALIZAR
+           ========================= */
+
+        function finalizar() {
+
+            const senha =
+                document.getElementById("senha").value;
+
+            const confirmar =
+                document.getElementById("confirmarSenha").value;
+
+
+            if (senha === "" || confirmar === "") {
+
+                alert(
+                    "❌ ERRO!\n\n" +
+                    "A senha está vazia.\n\n" +
+                    "Mas o campo parece preenchido.\n\n" +
+                    "O sistema está confuso."
+                );
+
+                return;
+
+            }
+
+
+            if (senha !== confirmar) {
+
+                alert(
+                    "🚨 AS SENHAS NÃO SÃO IGUAIS!\n\n" +
+                    "Ou são.\n\n" +
+                    "O sistema não conseguiu decidir."
+                );
+
+                return;
+
+            }
+
+
+            if (senha.length < 8) {
+
+                alert(
+                    "❌ Senha muito curta!\n\n" +
+                    "Ela precisa ter pelo menos 8 caracteres."
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                "✅ SENHA ACEITA!\n\n" +
+                "Não sabemos por quê.\n\n" +
+                "Prosseguindo..."
+            );
+
+
+            window.location.href =
+                "confirmacao.html";
+
+        }
+
+
+        /* =========================
+           VOLTAR
+           ========================= */
+
+        function voltar() {
+
+            window.location.href =
+                "dados.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

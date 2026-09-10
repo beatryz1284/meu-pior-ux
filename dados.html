@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verificação de Dados</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="aviso">
+            🚨 SISTEMA INSTÁVEL 🚨
+        </div>
+
+        <h1>🔧 VERIFICAÇÃO DOS SEUS DADOS</h1>
+
+        <p>
+            Esta etapa deveria ser rápida.
+            Provavelmente.
+        </p>
+
+        <!-- CONTADOR -->
+
+        <h2>
+            ⏱️ TEMPO RESTANTE:
+            <span id="tempo">30</span>
+        </h2>
+
+        <!-- BARRA DE PROGRESSO -->
+
+        <p>Progresso do cadastro:</p>
+
+        <div class="barra-fundo">
+            <div id="barra"></div>
+        </div>
+
+        <p id="status">
+            Verificando informações...
+        </p>
+
+
+        <!-- CAMPOS -->
+
+        <label for="cor">
+            Escolha sua cor favorita:
+        </label>
+
+        <select id="cor">
+
+            <option value="">
+                -- NÃO SEI --
+            </option>
+
+            <option value="azul">
+                Azul
+            </option>
+
+            <option value="vermelho">
+                Vermelho
+            </option>
+
+            <option value="verde">
+                Verde
+            </option>
+
+            <option value="rosa">
+                Rosa
+            </option>
+
+        </select>
+
+
+        <label for="animal">
+            Qual animal você seria?
+        </label>
+
+        <input
+            type="text"
+            id="animal"
+            placeholder="Ex: capivara"
+        >
+
+
+        <label for="numero">
+            Escolha um número de 1 a 10
+            (exceto 3, 5 e 7):
+        </label>
+
+        <input
+            type="number"
+            id="numero"
+            min="1"
+            max="10"
+        >
+
+
+        <br>
+        <br>
+
+
+        <!-- BOTÕES -->
+
+        <button onclick="voltar()">
+            ← VOLTAR
+        </button>
+
+        <button
+            id="botaoCaos"
+            onclick="continuar()">
+            NÃO CLIQUE AQUI
+        </button>
+
+
+        <p class="rodape">
+            ⚠️ Não atualize a página.
+            <br>
+            ⚠️ Ou atualize.
+            <br>
+            ⚠️ O sistema não sabe.
+        </p>
+
+    </div>
+
+
+    <script>
+
+        let tempo = 30;
+
+        let progresso = 0;
+
+
+        /* ==========================
+           CONTADOR MALUCO
+           ========================== */
+
+        const contador =
+            setInterval(function () {
+
+                tempo--;
+
+                document.getElementById("tempo").textContent = tempo;
+
+
+                if (tempo === 20) {
+
+                    document.getElementById("status").textContent =
+                        "⚠️ O tempo está passando. Ou não.";
+
+                }
+
+
+                if (tempo === 10) {
+
+                    document.getElementById("status").textContent =
+                        "🚨 VOCÊ ESTÁ DEMORANDO DEMAIS!!!";
+
+                }
+
+
+                if (tempo <= 0) {
+
+                    clearInterval(contador);
+
+                    document.getElementById("tempo").textContent =
+                        "0";
+
+                    document.getElementById("status").textContent =
+                        "💀 TEMPO ESGOTADO! Mas você pode continuar mesmo assim.";
+
+                }
+
+            }, 1000);
+
+
+        /* ==========================
+           BARRA DE PROGRESSO BUGADA
+           ========================== */
+
+        setInterval(function () {
+
+            progresso += Math.floor(Math.random() * 20) - 10;
+
+            if (progresso > 100) {
+                progresso = 100;
+            }
+
+            if (progresso < 0) {
+                progresso = 0;
+            }
+
+            document.getElementById("barra").style.width =
+                progresso + "%";
+
+        }, 700);
+
+
+        /* ==========================
+           BOTÃO FUGINDO
+           ========================== */
+
+        const botao =
+            document.getElementById("botaoCaos");
+
+
+        botao.addEventListener("mouseover", function () {
+
+            const x =
+                Math.random() * 120 - 60;
+
+            const y =
+                Math.random() * 80 - 40;
+
+            botao.style.transform =
+                `translate(${x}px, ${y}px) rotate(${Math.random() * 20 - 10}deg)`;
+
+        });
+
+
+        /* ==========================
+           CONTINUAR
+           ========================== */
+
+        function continuar() {
+
+            const cor =
+                document.getElementById("cor").value;
+
+            const animal =
+                document.getElementById("animal").value;
+
+            const numero =
+                document.getElementById("numero").value;
+
+
+            if (
+                cor === "" ||
+                animal === "" ||
+                numero === ""
+            ) {
+
+                alert(
+                    "❌ ERRO!\n\n" +
+                    "Você não preencheu todos os campos.\n\n" +
+                    "Mas aparentemente o sistema também não sabe quais campos faltam."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                numero == 3 ||
+                numero == 5 ||
+                numero == 7
+            ) {
+
+                alert(
+                    "🚨 NÚMERO INVÁLIDO!\n\n" +
+                    "Esse número foi considerado inadequado.\n\n" +
+                    "Por motivos que não podemos explicar."
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                "✅ Dados verificados!\n\n" +
+                "Resultado: provavelmente tudo certo.\n\n" +
+                "Você será enviado para a próxima página."
+            );
+
+
+            window.location.href =
+                "senha.html";
+
+        }
+
+
+        /* ==========================
+           VOLTAR
+           ========================== */
+
+        function voltar() {
+
+            alert(
+                "Você deseja voltar?\n\n" +
+                "Essa decisão pode ser irreversível.\n\n" +
+                "Ou não."
+            );
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cadastro Super Simples</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="aviso">
+            ⚠️ ATENÇÃO: NÃO CLIQUE EM NADA ⚠️
+        </div>
+
+        <h1>✨ CADASTRO SUPER SIMPLES ✨</h1>
+
+        <marquee>
+            PARABÉNS! Você está prestes a fazer um cadastro extremamente fácil!!!
+        </marquee>
+
+        <p class="estranho">
+            Para continuar, preencha os campos abaixo.
+            Ou não. O sistema também não sabe exatamente.
+        </p>
+
+        <form onsubmit="return iniciarCadastro()">
+
+            <label for="nome">
+                Nome obrigatório* (talvez)
+            </label>
+
+            <input
+                type="text"
+                id="nome"
+                placeholder="Digite seu nome aqui... ou não"
+            >
+
+            <label for="email">
+                E-mail obrigatório obrigatório*
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="exemplo@naoexiste.com"
+            >
+
+            <label for="idade">
+                Idade aproximada exata
+            </label>
+
+            <input
+                type="number"
+                id="idade"
+                placeholder="Ex: 18"
+            >
+
+            <div class="checkbox-caos">
+
+                <input type="checkbox" id="termos">
+
+                <label for="termos">
+                    Li e NÃO li os termos que não estão disponíveis.
+                </label>
+
+            </div>
+
+            <div class="botoes">
+
+                <button
+                    type="button"
+                    class="cancelar"
+                    onclick="cancelar()">
+                    ❌ NÃO QUERO
+                </button>
+
+                <button
+                    type="submit"
+                    class="continuar">
+                    talvez continuar →
+                </button>
+
+            </div>
+
+        </form>
+
+        <p class="rodape">
+            🔒 Seus dados estão 100% seguros*  
+            <br>
+            *Não sabemos.
+        </p>
+
+    </div>
+
+
+    <script>
+
+        function iniciarCadastro() {
+
+            const nome =
+                document.getElementById("nome").value;
+
+            const email =
+                document.getElementById("email").value;
+
+            const idade =
+                document.getElementById("idade").value;
+
+
+            if (nome === "" || email === "" || idade === "") {
+
+                alert(
+                    "ERRO!\n\n" +
+                    "Você deixou campos vazios.\n\n" +
+                    "Porém, isso não significa necessariamente que eles precisavam ser preenchidos."
+                );
+
+                return false;
+            }
+
+
+            alert(
+                "Cadastro quase concluído!\n\n" +
+                "Agora vamos para uma etapa completamente desnecessária."
+            );
+
+
+            window.location.href = "dados.html";
+
+            return false;
+        }
+
+
+        function cancelar() {
+
+            alert(
+                "Você clicou em NÃO QUERO.\n\n" +
+                "Excelente escolha!\n\n" +
+                "Agora você terá que continuar mesmo assim."
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>

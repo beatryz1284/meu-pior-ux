@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Confirmação</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>CONFIRMAÇÃO FINAL</h1>
+
+        <p>Você realmente deseja continuar?</p>
+
+        <p>Escolha uma opção abaixo cuidadosamente.</p>
+
+        <br>
+
+        <button onclick="nao()">NÃO</button>
+
+        <button onclick="talvez()">TALVEZ NÃO</button>
+
+        <button onclick="continuar()">SIM, MAS NÃO TENHO CERTEZA</button>
+
+        <button onclick="continuar()">CONTINUAR SEM CONFIRMAR</button>
+
+    </div>
+
+    <script>
+
+        function nao() {
+
+            alert("Você escolheu não continuar. Mas talvez devesse continuar.");
+
+        }
+
+
+        function talvez() {
+
+            alert("Resposta considerada inadequada. Tente novamente.");
+
+        }
+
+
+        function continuar() {
+
+            alert("Você tem certeza? Enfim... vamos continuar.");
+
+            window.location.href = "final.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
